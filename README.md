@@ -6,7 +6,7 @@ Sprint web,
 PostgreSql
 
 Реализованно
-Entity и DTO(Sensor, Measurement)
+Entity и DTO(Sensor, Measurement)/n
 Validation данных с глобальным Handler обработчиком
 Liquibase для автоматического накатывания структуры БД
 
