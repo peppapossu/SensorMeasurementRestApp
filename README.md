@@ -1,8 +1,8 @@
 Rest API который принимает измерения сенсора и сохраняет их в БД.
 
 Стек:
-Sprint boot
-Sprint web
+Sprint boot,
+Sprint web,
 PostgreSql
 
 Реализованно
