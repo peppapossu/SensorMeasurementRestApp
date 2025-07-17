@@ -6,8 +6,11 @@ Sprint web,
 PostgreSql
 
 Реализованно
-Entity и DTO(Sensor, Measurement)/n
+
+Entity и DTO(Sensor, Measurement)
+
 Validation данных с глобальным Handler обработчиком
+
 Liquibase для автоматического накатывания структуры БД
 
 Kafka для изучения работы и взаимодействия просто воткнул producer и consumer в Controller и Service
