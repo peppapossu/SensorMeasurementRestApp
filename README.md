@@ -2,27 +2,29 @@ Rest API который принимает измерения сенсора и 
 
 Стек:
 
-Sprint boot,
-Sprint web,
+Spring boot,
+Spring web,
 PostgreSql
 
 Реализованно:
 
 Entity и DTO(Sensor, Measurement).
 
-Validation данных с глобальным Handler обработчиком.
+Validation: 
+данных с глобальным Handler обработчиком.
 
-Liquibase для автоматического накатывания структуры БД.
+Liquibase: 
+для автоматического накатывания структуры БД.
 
-Kafka для изучения работы и взаимодействия, просто воткнул producer и consumer в Controller и Service.
+Kafka: 
+MeasurementRestController(producer) -> KafkaConsumer @Listener вызывает MeasurementService
 
 Redis:
+Перед добавление нового Measurement идет проверка существования Sensor в БД.
+Чтобы уменьшить колличесвто обращений к БД, поместил Sensor в кеш 2 уровня.
 
-Поскольку перед добавление нового измерения идет проверка существования датчика в БД.
-Чтобы уменьшить колличесвто обращений к БД, попробовал поместить датчики в кеш 2 уровня.
-Но пока что валится при десериализации (до конца не разобрался).
-
-Swagger доступен по стандартному адрессу http://localhost:8080/swagger-ui/
+Swagger:
+доступен по стандартному адрессу http://localhost:8080/swagger-ui/
 
 
 
