@@ -8,7 +8,6 @@ import ru.kir.sm.sensormeasurementrestapp.models.Sensor;
 import ru.kir.sm.sensormeasurementrestapp.repositories.SensorRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

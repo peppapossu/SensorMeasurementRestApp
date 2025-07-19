@@ -15,9 +15,7 @@ public class SensorCache {
 
     @Cacheable(value = "Sensor", key = "#name")
     public Sensor getSensorByName(String name){
-        log.warn("getSensorByName: name={}", name);
+        log.info("getSensorByName: name={}", name);
         return sensorRepository.getSensorByName(name).orElse(null);
     }
-
-
 }
