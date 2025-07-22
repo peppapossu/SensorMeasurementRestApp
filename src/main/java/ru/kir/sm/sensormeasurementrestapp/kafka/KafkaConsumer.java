@@ -17,8 +17,8 @@ public class KafkaConsumer {
 
     @KafkaListener(topics = "my-topic", groupId = "my-group")
     public void listen(String topic, String message) {
-        measurementService.add(stringJsonMapper.stringToObject(message, MeasurementDto.class));
         log.info("Received Message from topic {}", topic);
+        measurementService.add(stringJsonMapper.stringToObject(message, MeasurementDto.class));
     }
 
 //    @KafkaListener(topics = "my-topic", groupId = "my-group")

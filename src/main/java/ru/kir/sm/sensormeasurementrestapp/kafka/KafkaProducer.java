@@ -13,7 +13,7 @@ public class KafkaProducer {
     private final KafkaTemplate<String, MeasurementDto> kafkaTemplate;
 
     public void send(MeasurementDto message) {
-        log.warn("Sending message to Kafka: {}", message);
+        log.info("Sending message to Kafka: {}", message);
         kafkaTemplate.send("my-topic", message);
     }
 }

@@ -18,7 +18,6 @@ public class SensorRestController {
     @PostMapping("/registration")
     @ResponseStatus(HttpStatus.CREATED)
     public void registration(@Valid @RequestBody SensorDto sensorDto) {
-
         sensorService.addSensor(sensorDto);
     }
 }

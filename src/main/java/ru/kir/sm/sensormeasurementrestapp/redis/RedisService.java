@@ -5,6 +5,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import ru.kir.sm.sensormeasurementrestapp.models.Sensor;
 
+import java.time.Duration;
+
 @Service
 @RequiredArgsConstructor
 public class RedisService {
@@ -14,8 +16,8 @@ public class RedisService {
         sensorRedisTemplate.opsForValue().set(key, sensor);
     }
 
-    public Sensor getSensor(String key) {
-        return sensorRedisTemplate.opsForValue().get(key);
+    public Sensor getSensor(String key, Duration ttl) {
+        return sensorRedisTemplate.opsForValue().getAndExpire(key,ttl);
     }
 
     public void deleteSensor(String key) {

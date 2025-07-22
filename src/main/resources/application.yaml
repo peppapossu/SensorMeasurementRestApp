@@ -8,8 +8,8 @@ spring:
   #  Cache
   cache:
     type: redis
-  data:
   #  Redis
+  data:
     redis:
       host: localhost
       port: 6379

@@ -15,9 +15,6 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    /**
-     * Обработка ошибок @Valid (BindingResult, @Valid и др.)
-     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
@@ -31,9 +28,6 @@ public class GlobalExceptionHandler {
         return errors;
     }
 
-    /**
-     * Обработка ошибок при отсутствии параметров в URI
-     */
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, String> handleConstraintViolationException(ConstraintViolationException ex) {
@@ -45,9 +39,6 @@ public class GlobalExceptionHandler {
         return errors;
     }
 
-    /**
-     * Обработка любых других исключений (опционально)
-     */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Map<String, String> handleOtherExceptions(Exception ex) {
