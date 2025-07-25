@@ -11,6 +11,7 @@ import ru.kir.sm.sensormeasurementrestapp.services.MeasurementService;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/measurements")
 @AllArgsConstructor
@@ -19,6 +20,12 @@ public class MeasurementRestController {
     private final KafkaProducer kafkaProducer;
 
     @PostMapping("/add")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void add(@Valid @RequestBody MeasurementDto measurementDto) {
+        measurementService.add(measurementDto);
+    }
+
+    @PostMapping("/add/kafka")
     @ResponseStatus(HttpStatus.CREATED)
     public void addKafka(@Valid @RequestBody MeasurementDto measurementDto) {
         kafkaProducer.send(measurementDto);

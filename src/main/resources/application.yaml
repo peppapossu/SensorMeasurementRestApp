@@ -42,7 +42,7 @@ spring:
 
   config:
     import: file:secret.yml
-#Logging
+#    Logging
 logging:
   level:
     root: info

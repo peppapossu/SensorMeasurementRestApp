@@ -1,5 +1,6 @@
 package ru.kir.sm.sensormeasurementrestapp.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -28,6 +29,7 @@ public class Measurement {
     @ManyToOne
     @JoinColumn(name = "sensor_id", nullable = false)
     @JsonIgnore
+//    @JsonBackReference
     Sensor sensor;
 
     @CreationTimestamp

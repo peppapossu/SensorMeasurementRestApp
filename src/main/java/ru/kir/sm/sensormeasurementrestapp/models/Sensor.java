@@ -1,5 +1,6 @@
 package ru.kir.sm.sensormeasurementrestapp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,8 +14,8 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Sensor implements Serializable {
-
+//public class Sensor implements Serializable {
+public class Sensor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -23,6 +24,7 @@ public class Sensor implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "sensor", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+//    @JsonManagedReference
+    @JsonIgnore
     Set<Measurement> measurements;
 }
