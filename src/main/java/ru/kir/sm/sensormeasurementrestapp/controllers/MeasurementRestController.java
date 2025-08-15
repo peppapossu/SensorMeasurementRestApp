@@ -1,12 +1,12 @@
 package ru.kir.sm.sensormeasurementrestapp.controllers;
 
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.kir.sm.sensormeasurementrestapp.dto.MeasurementDto;
-import ru.kir.sm.sensormeasurementrestapp.kafka.KafkaProducer;
+import ru.kir.sm.sensormeasurementrestapp.dto.MeasurementsResponse;
 import ru.kir.sm.sensormeasurementrestapp.services.MeasurementService;
 
 import java.util.List;
@@ -14,10 +14,10 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/measurements")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MeasurementRestController {
+
     private final MeasurementService measurementService;
-    private final KafkaProducer kafkaProducer;
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
@@ -28,12 +28,12 @@ public class MeasurementRestController {
     @PostMapping("/add/kafka")
     @ResponseStatus(HttpStatus.CREATED)
     public void addKafka(@Valid @RequestBody MeasurementDto measurementDto) {
-        kafkaProducer.send(measurementDto);
+        measurementService.addKafka(measurementDto);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<MeasurementDto> getMeasurements() {
+    public MeasurementsResponse getMeasurements() {
         return measurementService.get();
     }
 

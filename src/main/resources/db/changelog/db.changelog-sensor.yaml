@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: 1-create-sensor-table
-      author: yourname
+      id: create-sensor-table
+      author: liquibase
       changes:
         - createTable:
             tableName: sensor

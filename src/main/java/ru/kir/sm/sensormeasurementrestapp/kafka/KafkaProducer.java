@@ -12,8 +12,19 @@ import ru.kir.sm.sensormeasurementrestapp.dto.MeasurementDto;
 public class KafkaProducer {
     private final KafkaTemplate<String, MeasurementDto> kafkaTemplate;
 
-    public void send(MeasurementDto message) {
-        log.info("Sending message to Kafka: {}", message);
-        kafkaTemplate.send("my-topic", message);
+    //    @Retryable(
+//            retryFor = {KafkaException.class},
+//            maxAttempts = 5,
+//            backoff = @Backoff(delay = 5000),
+//            recover = "recover"
+//    )
+    public void send(String topic, String key, MeasurementDto message) {
+            log.info("Trying send message to Kafka: {}", message);
+            kafkaTemplate.send(topic, key, message);
+            log.info("Message successfully sent to Kafka: {}", message);
     }
+//    @Recover
+//    public void recover(KafkaException cause, String topic, String key, MeasurementDto message) {
+//        log.info("Recover Kafka message to Kafka: {}", message);
+//    }
 }

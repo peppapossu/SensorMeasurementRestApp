@@ -1,13 +1,11 @@
 package ru.kir.sm.sensormeasurementrestapp.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-
 import java.time.LocalDateTime;
 
 @Entity
@@ -27,9 +25,10 @@ public class Measurement {
     Boolean raining;
 
     @ManyToOne
-    @JoinColumn(name = "sensor_id", nullable = false)
+    @JoinColumn(name = "sensor_id", nullable = false
+//            , referencedColumnName = "name"
+    )
     @JsonIgnore
-//    @JsonBackReference
     Sensor sensor;
 
     @CreationTimestamp

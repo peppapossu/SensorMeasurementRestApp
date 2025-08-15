@@ -1,5 +1,6 @@
 package ru.kir.sm.sensormeasurementrestapp.controllers;
 
+import lombok.RequiredArgsConstructor;
 import ru.kir.sm.sensormeasurementrestapp.dto.SensorDto;
 import ru.kir.sm.sensormeasurementrestapp.services.SensorService;
 import jakarta.validation.Valid;
@@ -8,12 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/sensors")
+@RequiredArgsConstructor
 public class SensorRestController {
-    SensorService sensorService;
-
-    public SensorRestController(SensorService sensorService) {
-        this.sensorService = sensorService;
-    }
+    private final SensorService sensorService;
 
     @PostMapping("/registration")
     @ResponseStatus(HttpStatus.CREATED)
