@@ -4,7 +4,12 @@ Rest API который принимает измерения сенсора и 
 
 Spring boot,
 Spring web,
-PostgreSql
+PostgreSQL
+Apache Kafka
+Redis
+Liquibase
+Mapstruct
+Lombok
 
 Реализованно:
 
