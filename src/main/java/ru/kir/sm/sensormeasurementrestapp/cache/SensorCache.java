@@ -1,4 +1,4 @@
-package ru.kir.sm.sensormeasurementrestapp.caches;
+package ru.kir.sm.sensormeasurementrestapp.cache;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

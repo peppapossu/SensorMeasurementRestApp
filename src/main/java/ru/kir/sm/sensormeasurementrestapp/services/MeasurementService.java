@@ -17,6 +17,7 @@ import ru.kir.sm.sensormeasurementrestapp.repositories.MeasurementRepository;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MeasurementService {
 
     private final MeasurementRepository measurementRepository;

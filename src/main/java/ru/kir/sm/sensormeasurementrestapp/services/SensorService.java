@@ -1,11 +1,10 @@
 package ru.kir.sm.sensormeasurementrestapp.services;
 
 import jakarta.persistence.EntityExistsException;
-import ru.kir.sm.sensormeasurementrestapp.caches.SensorCache;
+import ru.kir.sm.sensormeasurementrestapp.cache.SensorCache;
 import ru.kir.sm.sensormeasurementrestapp.dto.SensorDto;
 import ru.kir.sm.sensormeasurementrestapp.mapper.SensorMapper;
 import ru.kir.sm.sensormeasurementrestapp.models.Sensor;
-import ru.kir.sm.sensormeasurementrestapp.repositories.SensorRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class SensorService {
 
     private final SensorMapper sensorMapper;

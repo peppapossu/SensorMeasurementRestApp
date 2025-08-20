@@ -7,7 +7,7 @@ spring:
     password: ${db.password}
   #  Cache
   cache:
-    type: redis
+    type: none
   #  Redis
   data:
     redis:
