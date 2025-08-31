@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+/src/main/java/parserapp/
+/src/main/java/ru/kir/sm/sensormeasurementrestapp/config/

@@ -1,6 +1,6 @@
-package ru.kir.sm.sensormeasurementrestapp.repositories;
+package ru.kir.sm.sensormeasurementrestapp.repositorie;
 
-import ru.kir.sm.sensormeasurementrestapp.models.Measurement;
+import ru.kir.sm.sensormeasurementrestapp.model.Measurement;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

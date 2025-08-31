@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/changelog/db.changelog-sensor.yaml
   - include:
       file: db/changelog/db.changelog-measurement.yaml
+  - include:
+      file: db/changelog/db.changelog-measurement_1.yaml

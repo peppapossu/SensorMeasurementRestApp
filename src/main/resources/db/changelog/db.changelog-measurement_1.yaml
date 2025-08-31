@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: edit-measurement-table
+      author: liquibase
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: measurement
+            constraintName: fk_measurement_sensor
+        - addForeignKeyConstraint:
+            baseTableName: measurement
+            baseColumnNames: sensor_id
+            referencedTableName: sensor
+            referencedColumnNames: id
+            constraintName: fk_measurement_sensor
+            onDelete: CASCADE

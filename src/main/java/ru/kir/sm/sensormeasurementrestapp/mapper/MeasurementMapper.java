@@ -1,7 +1,7 @@
 package ru.kir.sm.sensormeasurementrestapp.mapper;
 
 import ru.kir.sm.sensormeasurementrestapp.dto.MeasurementDto;
-import ru.kir.sm.sensormeasurementrestapp.models.Measurement;
+import ru.kir.sm.sensormeasurementrestapp.model.Measurement;
 import org.mapstruct.Mapper;
 
 import java.util.List;

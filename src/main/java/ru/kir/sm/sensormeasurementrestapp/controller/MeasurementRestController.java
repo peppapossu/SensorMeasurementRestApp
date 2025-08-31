@@ -1,17 +1,13 @@
-package ru.kir.sm.sensormeasurementrestapp.controllers;
+package ru.kir.sm.sensormeasurementrestapp.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.kir.sm.sensormeasurementrestapp.dto.MeasurementDto;
 import ru.kir.sm.sensormeasurementrestapp.dto.MeasurementsResponse;
-import ru.kir.sm.sensormeasurementrestapp.services.MeasurementService;
+import ru.kir.sm.sensormeasurementrestapp.service.MeasurementService;
 
-import java.util.List;
-
-@Slf4j
 @RestController
 @RequestMapping("/measurements")
 @RequiredArgsConstructor

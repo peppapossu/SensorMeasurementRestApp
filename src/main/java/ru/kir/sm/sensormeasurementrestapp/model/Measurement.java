@@ -1,21 +1,24 @@
-package ru.kir.sm.sensormeasurementrestapp.models;
+package ru.kir.sm.sensormeasurementrestapp.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+
 import java.time.LocalDateTime;
 
 @Entity
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(exclude = "sensor")
 public class Measurement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private long id;
 
     @Column(nullable = false)
@@ -25,10 +28,8 @@ public class Measurement {
     Boolean raining;
 
     @ManyToOne
-    @JoinColumn(name = "sensor_id", nullable = false
-//            , referencedColumnName = "name"
-    )
-    @JsonIgnore
+    @JoinColumn(name = "sensor_id", nullable = false, referencedColumnName = "id")
+//    @JsonIgnore
     Sensor sensor;
 
     @CreationTimestamp
