@@ -29,6 +29,7 @@ spring:
       group-id: my-group
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: false
     #      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
     #      properties:
     #        spring.json.trusted.packages: "*"
@@ -39,6 +40,8 @@ spring:
       properties:
         spring.json.add.type.headers: false
     #       spring.json.trusted.packages: "*"
+    listener:
+      ack-mode: manual_immediate
 
   config:
     import: file:secret.yml
@@ -46,6 +49,17 @@ spring:
 logging:
   level:
     root: info
+    org.springframework.cache: DEBUG
+    org.springframework.data.redis: DEBUG
+    org.springframework.data.redis.core.RedisTemplate: DEBUG
+    org.springframework.data.redis.cache: DEBUG
+#    Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: caches
+
 
 
 

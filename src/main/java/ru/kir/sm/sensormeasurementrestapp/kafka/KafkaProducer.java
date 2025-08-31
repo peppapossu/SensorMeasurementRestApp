@@ -19,9 +19,9 @@ public class KafkaProducer {
 //            recover = "recover"
 //    )
     public void send(String topic, String key, MeasurementDto message) {
-            log.info("Trying send message to Kafka: {}", message);
+            log.info("Trying send message to Kafka: '{}'", message);
             kafkaTemplate.send(topic, key, message);
-            log.info("Message successfully sent to Kafka: {}", message);
+            log.info("Message successfully sent to Kafka: '{}'", message);
     }
 //    @Recover
 //    public void recover(KafkaException cause, String topic, String key, MeasurementDto message) {
