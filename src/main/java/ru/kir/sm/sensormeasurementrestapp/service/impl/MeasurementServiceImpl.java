@@ -1,4 +1,4 @@
-package ru.kir.sm.sensormeasurementrestapp.services;
+package ru.kir.sm.sensormeasurementrestapp.service.impl;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -10,15 +10,17 @@ import ru.kir.sm.sensormeasurementrestapp.dto.MeasurementsResponse;
 import ru.kir.sm.sensormeasurementrestapp.dto.SensorDto;
 import ru.kir.sm.sensormeasurementrestapp.kafka.KafkaProducer;
 import ru.kir.sm.sensormeasurementrestapp.mapper.MeasurementMapper;
-import ru.kir.sm.sensormeasurementrestapp.models.Measurement;
-import ru.kir.sm.sensormeasurementrestapp.models.Sensor;
-import ru.kir.sm.sensormeasurementrestapp.repositories.MeasurementRepository;
+import ru.kir.sm.sensormeasurementrestapp.model.Measurement;
+import ru.kir.sm.sensormeasurementrestapp.model.Sensor;
+import ru.kir.sm.sensormeasurementrestapp.repositorie.MeasurementRepository;
+import ru.kir.sm.sensormeasurementrestapp.service.MeasurementService;
+import ru.kir.sm.sensormeasurementrestapp.service.SensorService;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class MeasurementService {
+public class MeasurementServiceImpl implements MeasurementService {
 
     private final MeasurementRepository measurementRepository;
     private final MeasurementMapper mapper;
@@ -29,7 +31,7 @@ public class MeasurementService {
     public void add(MeasurementDto measurementDto) {
         String sensorName = measurementDto.sensor().name();
 
-        isSensorExist(measurementDto.sensor());
+        sensorExist(measurementDto.sensor());
 
         Sensor sensor = sensorService.getSensorByName(sensorName);
 
@@ -37,12 +39,12 @@ public class MeasurementService {
         measurement.setSensor(sensor);
 
         measurementRepository.save(measurement);
-        log.info("Saved new measurement for sensor '{}'", sensorName);
+        log.info("Saved new measurement for Sensor name:'{}'", sensorName);
     }
 
     public void addKafka(MeasurementDto measurementDto) {
         String sensorName = measurementDto.sensor().name();
-        isSensorExist(measurementDto.sensor());
+        sensorExist(measurementDto.sensor());
         kafkaProducer.send("measurement", sensorName, measurementDto);
     }
 
@@ -54,11 +56,11 @@ public class MeasurementService {
         return measurementRepository.findAllByRainingIsTrue();
     }
 
-    private void isSensorExist(SensorDto sensorDto) {
+    private void sensorExist(SensorDto sensorDto) {
         String sensorName = sensorDto.name();
         if (!sensorService.isAlreadyExist(sensorDto)){
-            log.error("Sensor '{}' does not exist", sensorName);
-            throw new EntityNotFoundException("Sensor '" + sensorName + "' does not exist");
+            log.error("Sensor name:'{}' does not exist", sensorName);
+            throw new EntityNotFoundException("Sensor name:'" + sensorName + "' does not exist");
         }
     }
 }

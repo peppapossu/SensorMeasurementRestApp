@@ -1,34 +1,29 @@
-package ru.kir.sm.sensormeasurementrestapp.services;
+package ru.kir.sm.sensormeasurementrestapp.service.impl;
 
-import jakarta.persistence.EntityExistsException;
-import ru.kir.sm.sensormeasurementrestapp.cache.SensorCache;
+import ru.kir.sm.sensormeasurementrestapp.cache.impl.SensorCacheImpl;
 import ru.kir.sm.sensormeasurementrestapp.dto.SensorDto;
 import ru.kir.sm.sensormeasurementrestapp.mapper.SensorMapper;
-import ru.kir.sm.sensormeasurementrestapp.models.Sensor;
+import ru.kir.sm.sensormeasurementrestapp.model.Sensor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.kir.sm.sensormeasurementrestapp.service.SensorService;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class SensorService {
+public class SensorServiceImpl implements SensorService {
 
     private final SensorMapper sensorMapper;
-    private final SensorCache sensorCache;
+    private final SensorCacheImpl sensorCache;
 
     @Transactional
     public void addSensor(SensorDto sensorDto) {
-
-        if (isAlreadyExist(sensorDto)) {
-            log.warn("Sensor {} already exist", sensorDto.name());
-            throw new EntityExistsException("Sensor with name " + sensorDto.name() + " already exists");
-        }
         var sensor = sensorMapper.toEntity(sensorDto);
         sensorCache.addSensor(sensor.getName(), sensor);
-        log.info("Sensor added successfully");
+        log.info("Sensor name:'{}' added successfully", sensor.getName());
     }
 
     public Sensor getSensorByName(String name) {

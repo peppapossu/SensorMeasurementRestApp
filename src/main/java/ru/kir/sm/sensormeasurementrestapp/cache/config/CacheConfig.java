@@ -1,4 +1,4 @@
-package ru.kir.sm.sensormeasurementrestapp.cache;
+package ru.kir.sm.sensormeasurementrestapp.cache.config;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,6 +17,7 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import ru.kir.sm.sensormeasurementrestapp.cache.impl.TwoLevelCacheManagerImpl;
 
 import java.time.Duration;
 
@@ -29,14 +30,14 @@ public class CacheConfig {
         var manager = new CaffeineCacheManager("Sensor");
         manager.setCaffeine(
                 Caffeine.newBuilder()
-                        .expireAfterWrite(Duration.ofMinutes(5))
+                        .expireAfterWrite(Duration.ofSeconds(10))
                         .maximumSize(10_000)
         );
         return manager;
     }
 
     @Bean
-    public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory) {
+    public RedisCacheManager redisCacheManager(RedisConnectionFactory connectionFactory) {
         RedisSerializer<String> keySerializer = new StringRedisSerializer();
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -47,7 +48,7 @@ public class CacheConfig {
         );
 
         Jackson2JsonRedisSerializer<Object> valueSerializer =
-                new Jackson2JsonRedisSerializer<>(objectMapper,Object.class);
+                new Jackson2JsonRedisSerializer<>(objectMapper, Object.class);
 
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofSeconds(60))
@@ -58,13 +59,11 @@ public class CacheConfig {
                 .cacheDefaults(config)
                 .build();
     }
-
     @Primary
     @Bean
     public CacheManager twoLevelCacheManager(
             CaffeineCacheManager caffeineCacheManager,
-            RedisCacheManager redisCacheManager
-    ) {
-        return new TwoLevelCacheManager(caffeineCacheManager, redisCacheManager);
+            RedisCacheManager redisCacheManager) {
+        return new TwoLevelCacheManagerImpl(caffeineCacheManager, redisCacheManager);
     }
 }
