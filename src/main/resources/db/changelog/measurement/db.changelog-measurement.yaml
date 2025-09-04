@@ -36,8 +36,9 @@ databaseChangeLog:
                     referencedColumnNames: id
 
               - column:
-                  name: time
-                  type: TIME
-                  defaultValueComputed: CURRENT_TIME
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
                   constraints:
                     nullable: false
+

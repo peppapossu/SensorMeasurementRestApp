@@ -1,7 +1,7 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/db.changelog-sensor.yaml
+      file: db/changelog/sensor/db.changelog-sensor.yaml
   - include:
-      file: db/changelog/db.changelog-measurement.yaml
+      file: db/changelog/measurement/db.changelog-measurement.yaml
   - include:
-      file: db/changelog/db.changelog-measurement_1.yaml
+      file: db/changelog/measurement/db.changelog-measurement_1.yaml
