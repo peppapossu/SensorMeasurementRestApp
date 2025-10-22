@@ -11,7 +11,7 @@ Docker/DockerCompose
 
 Entity, DTO(Sensor, Measurement).
 Data Validation and GlobalHandlerValidation
-Kafka with manual offset
+Kafka with manual offset 
 Swagger: http://localhost:8080/swagger-ui/
 
 
