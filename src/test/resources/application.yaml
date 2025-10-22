@@ -3,7 +3,7 @@ spring:
     listener:
       auto-startup: false
   liquibase:
-    enabled: true
+    enabled: false
 
   datasource:
     url: jdbc:h2:mem:testdb #mock
@@ -26,8 +26,8 @@ spring:
           min-idle: 0
           max-wait: 1000ms
 
-  main:
-    allow-bean-definition-overriding: true
+#  main:
+#    allow-bean-definition-overriding: true
 
 logging:
   level:

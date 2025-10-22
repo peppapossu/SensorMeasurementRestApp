@@ -3,6 +3,7 @@ package ru.kir.sm.sensormeasurementrestapp.service.impl;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kir.sm.sensormeasurementrestapp.dto.MeasurementDto;

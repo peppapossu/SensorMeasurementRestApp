@@ -13,26 +13,25 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString(exclude = "sensor")
 public class Measurement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
-    Double value;
+    private Double value;
 
     @Column(nullable = false)
-    Boolean raining;
+    private Boolean raining;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sensor_id", nullable = false, referencedColumnName = "id")
 //    @JsonIgnore
-    Sensor sensor;
+    private Sensor sensor;
 
     @CreationTimestamp
-    @Column(updatable = false)
-    LocalDateTime time;
+    @Column(updatable = false, nullable = false)
+    private LocalDateTime created_at;
 }

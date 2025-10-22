@@ -12,4 +12,7 @@ public interface SensorRepository extends JpaRepository<Sensor, Long> {
     Optional<Sensor> getSensorByName(String name);
 
     void deleteByName(String name);
+
+//    @Query("select new ru.kir.sm.sensormeasurementrestapp.dto.SensorDto(s.name) from Sensor s")
+//    MeasurementDto getMeasurementByName(String name);
 }
