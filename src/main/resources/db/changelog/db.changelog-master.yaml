@@ -5,3 +5,5 @@ databaseChangeLog:
       file: db/changelog/measurement/db.changelog-measurement.yaml
   - include:
       file: db/changelog/measurement/db.changelog-measurement_1.yaml
+  - include:
+      file: db/changelog/security/addUserTable.yaml
