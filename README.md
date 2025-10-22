@@ -1,35 +1,18 @@
-Rest API который принимает измерения сенсора и сохраняет их в БД.
+RestFull API App
 
-Стек:
-
-Spring boot,
-Spring web,
+Spring: Boot, Web, Data, Security
 PostgreSQL
 Apache Kafka
-Redis
+Redis, Caffeine (Two levels cache)
 Liquibase
 Mapstruct
 Lombok
+Docker/DockerCompose
 
-Реализованно:
-
-Entity и DTO(Sensor, Measurement).
-
-Validation: 
-данных с глобальным Handler обработчиком.
-
-Liquibase: 
-для автоматического накатывания структуры БД.
-
-Kafka: 
-MeasurementRestController(producer) -> KafkaConsumer @Listener вызывает MeasurementService
-
-Redis:
-Перед добавление нового Measurement идет проверка существования Sensor в БД.
-Чтобы уменьшить колличесвто обращений к БД, поместил Sensor в кеш 2 уровня.
-
-Swagger:
-доступен по стандартному адрессу http://localhost:8080/swagger-ui/
+Entity, DTO(Sensor, Measurement).
+Data Validation and GlobalHandlerValidation
+Kafka with manual offset
+Swagger: http://localhost:8080/swagger-ui/
 
 
 
